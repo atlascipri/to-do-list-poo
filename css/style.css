@@ -1,0 +1,60 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body{
+    width: 100%;
+    background-color: skyblue;
+}
+
+.container{
+    width: 30rem;
+    margin: 10px auto;
+
+}
+
+.container .titulo{
+    text-align: center;
+}
+
+.container .form{
+    background-color: #fff;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.form input{
+    flex: 1;
+    padding: 0.7rem;
+    border: none;
+    background-color: transparent;
+    outline:none;
+}
+
+.form .btn-adicionar{
+    padding: 0.7rem;
+    border: none;
+    background-color: darkblue;
+    color:#fff;
+    cursor: pointer;    
+}
+
+
+.container-lista .tarefa{
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+    background-color: #fff;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+}
+
+.container-lista span{
+    cursor:pointer;
+}
