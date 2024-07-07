@@ -4,20 +4,27 @@
     box-sizing: border-box;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-
+  
 body{
     width: 100%;
     background-color: skyblue;
 }
 
-.container{
-    width: 30rem;
-    margin: 10px auto;
+.container-header{
+    display: flex;
+    width: 40rem;
+    margin: 5px auto;
 
 }
 
-.container .titulo{
-    text-align: center;
+.container-logo .logo{
+    width: 120px;
+    margin: 10px;
+}
+
+.container{
+    width: 30rem;
+    margin: 10px auto;
 }
 
 .container .form{
