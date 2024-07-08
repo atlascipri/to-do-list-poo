@@ -33,7 +33,7 @@ class UI {
                         <span class="btn-editar" data-id = ${tarefa.id}> 🖊️ </span> 
                         <span class="btn-remover" data-id = ${tarefa.id}> 🗑️ </span>
                         </div>
-            `
+                    </div> `
         });
         containerLista.innerHTML = exibirTarefas.join(" ");
     };
@@ -57,10 +57,17 @@ class Tarefas{
     static removerTarefa(){
         containerLista.addEventListener("click", (e) => {
             if(e.target.classList.contains("btn-remover")){
-                    e.target.parentElement.remove();
-            };
-            let id = e.target.dataset.id;
+                    e.target.parentElement.parentElement.remove();  
 
+                    let btnId = e.target.dataset.id;
+
+                    tarefas = tarefas.filter((tarefa) => tarefa.id !== +btnId);
+            
+                    Storage.salvarTarefas(tarefas); 
+            };
+        });
+    };
+    
     static editarTarefa(){
         let modoEdicao = true;
         containerLista.addEventListener("click", (e) => {
