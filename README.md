@@ -1,12 +1,13 @@
-<<<<<<< HEAD
-# README: Lista de tarefas com POO
+
+# Lista de tarefas com POO
 
 ## Descrição
 Este é um projeto simples de lista de tarefas desenvolvido em JavaScript com programação orientada a objetos (POO).
 
 ## Funcionalidades
-- Adicionar e remover tarefas.
+- Adicionar, remover e editar tarefas.
 - Armazenamento local para persistência das tarefas.
+- 
 
 ## Tecnologias Utilizadas
 - HTML
