@@ -14,7 +14,7 @@ body{
     display: flex;
     width: 40rem;
     margin: 5px auto;
-
+    border-bottom: gray 1px solid;
 }
 
 .container-logo .logo{
