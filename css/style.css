@@ -65,3 +65,22 @@ body{
 .container-lista span{
     cursor:pointer;
 }
+
+.remover-tudo{
+    display: flex;
+    justify-content: flex-end;    
+}
+
+.remover-tudo button{
+    margin-top: 25px;
+    padding: 7px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: darkblue;
+    color: #fff;
+}
+
+.remover-tudo button:hover{
+    background-color: #d32f2f;
+}
