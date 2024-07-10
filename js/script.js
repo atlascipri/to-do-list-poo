@@ -5,6 +5,8 @@ let tarefas = [];
 
 document.addEventListener("DOMContentLoaded", () => {
     tarefas = Storage.obterTarefas();
+    UI.exibirTarefas();
+    UI.exibirOcultarbtnRemoverTodasTarefas();
     Tarefas.removerTarefa();
     Tarefas.editarTarefa();
     UI.exibirTarefas();
@@ -14,6 +16,11 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
     Tarefas.adicionarTarefa();
     Storage.salvarTarefas(tarefas);
+    UI.exibirOcultarbtnRemoverTodasTarefas();
+});
+
+btnRemoverTodasTarefas.addEventListener("click", () => {
+    Tarefas.removerTodasTarefas();
 });
 
 class Tarefa {
@@ -36,6 +43,10 @@ class UI {
                     </div> `
         });
         containerLista.innerHTML = exibirTarefas.join(" ");
+    };
+
+    static exibirOcultarbtnRemoverTodasTarefas(){    
+        btnRemoverTodasTarefas.style.display = tarefas.length > 0 ? "flex" : "none";
     };
 };
 
@@ -66,6 +77,8 @@ class Tarefas{
                     tarefas = tarefas.filter((tarefa) => tarefa.id !== +btnId);
             
                     Storage.salvarTarefas(tarefas); 
+
+                    UI.exibirOcultarbtnRemoverTodasTarefas();
             };
         });
     };
