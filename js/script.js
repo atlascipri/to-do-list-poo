@@ -100,9 +100,8 @@ class Tarefas{
 };
 
 class Storage{
-    static salvarTarefas(tarefas){
-        let storage = localStorage.setItem("tarefas", JSON.stringify(tarefas));
-        return storage;
+    static salvarTarefas(tarefas) {
+        localStorage.setItem("tarefas", JSON.stringify(tarefas));
     };
     
     static obterTarefas(){
