@@ -51,6 +51,8 @@ class Tarefas{
         
         tituloTarefa.value = "";
 
+        tituloTarefa.focus();
+
         UI.exibirTarefas();
     };
 
@@ -104,9 +106,7 @@ class Storage{
     };
     
     static obterTarefas(){
-        let storage = localStorage.getItem("tarefas") === null ? 
-        [] : JSON.parse(localStorage.getItem("tarefas"));
-        return storage;
+        return localStorage.getItem("tarefas") ? JSON.parse(localStorage.getItem("tarefas")) : [];
     };
 
 };
