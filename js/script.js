@@ -1,6 +1,7 @@
 const form = document.querySelector("[dado-form]");
 const containerLista = document.querySelector("[dado-container-lista]");
 const tituloTarefa = document.querySelector("[dado-input]");
+const btnRemoverTodasTarefas = document.getElementById("btn-remover-tudo");  
 let tarefas = [];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -109,6 +110,14 @@ class Tarefas{
                 modoEdicao = !modoEdicao;
             };
         });
+    };
+
+    static removerTodasTarefas(){
+            tarefas = [];
+            Storage.salvarTarefas(tarefas);
+            UI.exibirTarefas();
+            UI.exibirOcultarbtnRemoverTodasTarefas();
+        
     };
 };
 
