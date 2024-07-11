@@ -6,18 +6,16 @@ const btnRemoverTodasTarefas = document.getElementById("btn-remover-tudo");
 
 document.addEventListener("DOMContentLoaded", () => {
     Tarefas.tarefas = Storage.obterTarefas();
-    UI.exibirTarefas();
-    UI.exibirOcultarbtnRemoverTodasTarefas();
+    UI.atualizarInterface();
     Tarefas.removerTarefa();
     Tarefas.editarTarefa();
-    UI.exibirTarefas();
 });
 
 form.addEventListener("submit", (e) => { 
     e.preventDefault();
     Tarefas.adicionarTarefa();
     Storage.salvarTarefas(Tarefas.tarefas);
-    UI.exibirOcultarbtnRemoverTodasTarefas();
+    UI.atualizarInterface();
 });
 
 btnRemoverTodasTarefas.addEventListener("click", () => {
@@ -49,6 +47,11 @@ class UI {
     static exibirOcultarbtnRemoverTodasTarefas(){    
         btnRemoverTodasTarefas.style.display = Tarefas.tarefas.length > 0 ? "flex" : "none";
     };
+
+    static atualizarInterface(){
+        this.exibirTarefas();
+        this.exibirOcultarbtnRemoverTodasTarefas();
+    }
 };
 
 
@@ -66,7 +69,7 @@ class Tarefas{
 
         tituloTarefa.focus();
 
-        UI.exibirTarefas();
+        UI.atualizarInterface();
     };
 
     static removerTarefa(){
@@ -79,8 +82,7 @@ class Tarefas{
                     this.tarefas = this.tarefas.filter((tarefa) => tarefa.id !== +btnId);
             
                     Storage.salvarTarefas(this.tarefas); 
-
-                    UI.exibirOcultarbtnRemoverTodasTarefas();
+                    UI.atualizarInterface();
             };
         });
     };
@@ -116,8 +118,7 @@ class Tarefas{
     static removerTodasTarefas(){
             this.tarefas = [];
             Storage.salvarTarefas(this.tarefas);
-            UI.exibirTarefas();
-            UI.exibirOcultarbtnRemoverTodasTarefas();
+            UI.atualizarInterface();
         
     };
 };
