@@ -2,10 +2,10 @@ const form = document.querySelector("[dado-form]");
 const containerLista = document.querySelector("[dado-container-lista]");
 const tituloTarefa = document.querySelector("[dado-input]");
 const btnRemoverTodasTarefas = document.getElementById("btn-remover-tudo");  
-let tarefas = [];
+
 
 document.addEventListener("DOMContentLoaded", () => {
-    tarefas = Storage.obterTarefas();
+    Tarefas.tarefas = Storage.obterTarefas();
     UI.exibirTarefas();
     UI.exibirOcultarbtnRemoverTodasTarefas();
     Tarefas.removerTarefa();
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 form.addEventListener("submit", (e) => { 
     e.preventDefault();
     Tarefas.adicionarTarefa();
-    Storage.salvarTarefas(tarefas);
+    Storage.salvarTarefas(Tarefas.tarefas);
     UI.exibirOcultarbtnRemoverTodasTarefas();
 });
 
@@ -34,7 +34,7 @@ class Tarefa {
 class UI {
 
     static exibirTarefas(){
-        let exibirTarefas = tarefas.map((tarefa) => {
+        let exibirTarefas = Tarefas.tarefas.map((tarefa) => {
             return `<div class='tarefa'>
                         <p class="tarefa-titulo"> ${tarefa.titulo} </p>
                         <div class="icons">
@@ -47,19 +47,20 @@ class UI {
     };
 
     static exibirOcultarbtnRemoverTodasTarefas(){    
-        btnRemoverTodasTarefas.style.display = tarefas.length > 0 ? "flex" : "none";
+        btnRemoverTodasTarefas.style.display = Tarefas.tarefas.length > 0 ? "flex" : "none";
     };
 };
 
 
 class Tarefas{
+    static tarefas = [];
 
     static adicionarTarefa() {
         let id = Math.floor(Math.random() * 1000000);
 
         const tarefa = new Tarefa(id, tituloTarefa.value);
         
-        tarefas = [... tarefas, tarefa];
+        this.tarefas = [... this.tarefas, tarefa];
         
         tituloTarefa.value = "";
 
@@ -75,9 +76,9 @@ class Tarefas{
 
                     let btnId = e.target.dataset.id;
 
-                    tarefas = tarefas.filter((tarefa) => tarefa.id !== +btnId);
+                    this.tarefas = this.tarefas.filter((tarefa) => tarefa.id !== +btnId);
             
-                    Storage.salvarTarefas(tarefas); 
+                    Storage.salvarTarefas(this.tarefas); 
 
                     UI.exibirOcultarbtnRemoverTodasTarefas();
             };
@@ -102,9 +103,9 @@ class Tarefas{
                     titulo.removeAttribute("contenteditable");
 
                     const tarefas = Storage.obterTarefas();
-                    const tarefaIndex = tarefas.findIndex((tarefa) => tarefa.id === +btnId);
-                    tarefas[tarefaIndex].titulo = titulo.textContent;
-                    Storage.salvarTarefas(tarefas);
+                    const tarefaIndex = this.tarefas.findIndex((tarefa) => tarefa.id === +btnId);
+                    this.tarefas[tarefaIndex].titulo = titulo.textContent;
+                    Storage.salvarTarefas(this.tarefas);
 
                 };
                 modoEdicao = !modoEdicao;
@@ -113,8 +114,8 @@ class Tarefas{
     };
 
     static removerTodasTarefas(){
-            tarefas = [];
-            Storage.salvarTarefas(tarefas);
+            this.tarefas = [];
+            Storage.salvarTarefas(this.tarefas);
             UI.exibirTarefas();
             UI.exibirOcultarbtnRemoverTodasTarefas();
         
