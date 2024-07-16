@@ -85,3 +85,7 @@ body{
 .remover-tudo button:hover{
     background-color: #d32f2f;
 }
+
+.tarefa.concluida { 
+    background-color: #90ee90;
+}

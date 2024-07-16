@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     UI.atualizarInterface();
     Tarefas.removerTarefa();
     Tarefas.editarTarefa();
+    Tarefas.concluirTarefa();
 });
 
 form.addEventListener("submit", (e) => { 
@@ -26,6 +27,7 @@ class Tarefa {
     constructor(id, tituloTarefa){
         this.id = id;
         this.titulo = tituloTarefa;
+        this.concluida = false;
     };
 };
 
@@ -33,9 +35,10 @@ class UI {
 
     static exibirTarefas(){
         let exibirTarefas = Tarefas.tarefas.map((tarefa) => {
-            return `<div class='tarefa'>
+            return `<div class='tarefa ${tarefa.concluida ? "concluida" : ""}' >
                         <p class="tarefa-titulo"> ${tarefa.titulo} </p>
                         <div class="icons">
+                        <span class="btn-concluir" data-id=${tarefa.id}> ✔️ </span>
                         <span class="btn-editar" data-id = ${tarefa.id}> 🖊️ </span> 
                         <span class="btn-remover" data-id = ${tarefa.id}> 🗑️ </span>
                         </div>
@@ -87,6 +90,19 @@ class Tarefas{
         });
     };
     
+    static concluirTarefa() {
+        containerLista.addEventListener("click", (e) => {
+            if (e.target.classList.contains("btn-concluir")) {
+                let btnId = e.target.dataset.id;
+                const tarefaIndex = this.tarefas.findIndex((tarefa) => tarefa.id === +btnId);
+                this.tarefas[tarefaIndex].concluida = !this.tarefas[tarefaIndex].concluida; 
+                console.log(this.tarefas[tarefaIndex].concluida);
+                Storage.salvarTarefas(this.tarefas);
+                UI.atualizarInterface();
+            }
+        });
+    }
+
     static editarTarefa(){
         let modoEdicao = true;
         containerLista.addEventListener("click", (e) => {
