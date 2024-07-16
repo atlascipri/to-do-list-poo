@@ -5,9 +5,8 @@
 Este é um projeto simples de lista de tarefas desenvolvido em JavaScript com programação orientada a objetos (POO).
 
 ## Funcionalidades
-- Adicionar, remover e editar tarefas.
+- Adicionar, concluir, editar e remover tarefas.
 - Armazenamento local para persistência das tarefas.
-- 
 
 ## Tecnologias Utilizadas
 - HTML
