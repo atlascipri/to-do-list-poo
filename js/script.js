@@ -51,10 +51,20 @@ class UI {
         btnRemoverTodasTarefas.style.display = Tarefas.tarefas.length > 0 ? "flex" : "none";
     };
 
+    static atualizarProgresso() {
+        const barraProgresso = document.getElementById("barraProgresso");
+        const totalTarefas = Tarefas.tarefas.length;
+        const tarefasConcluidas = Tarefas.tarefas.filter(tarefa => tarefa.concluida).length;
+        const progresso = totalTarefas ? (tarefasConcluidas / totalTarefas) * 100 : 0;
+
+        barraProgresso.style.width = `${progresso}%`;
+    };
+
     static atualizarInterface(){
         this.exibirTarefas();
         this.exibirOcultarbtnRemoverTodasTarefas();
-    }
+        this.atualizarProgresso();
+    };
 };
 
 
@@ -101,7 +111,7 @@ class Tarefas{
                 UI.atualizarInterface();
             }
         });
-    }
+    };
 
     static editarTarefa(){
         let modoEdicao = true;
